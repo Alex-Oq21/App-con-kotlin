@@ -4,7 +4,7 @@
     <string name="texto_ciudad">Medellín</string>
     <string name="texto_estatus">Nublado</string>
     <string name="Texto_bienvenida">
-        Bienvenido, Selecciona la opción de abajo.
+        Bienvenido, Selecciona la ciudad que quieras consultar.
     </string>
     <string name="btn_clima_medellin">Clima Ciudad Medellín</string>
     <string name="btn_clima_cali">Clima Ciudad Cali</string>
