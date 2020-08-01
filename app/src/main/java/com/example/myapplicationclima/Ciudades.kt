@@ -18,6 +18,7 @@ class Ciudades : AppCompatActivity() {
             startActivity(intent)
         })
         button_cali.setOnClickListener(View.OnClickListener {
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         })
