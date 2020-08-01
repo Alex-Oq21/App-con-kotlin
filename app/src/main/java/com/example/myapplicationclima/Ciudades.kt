@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.Toast
 
 class Ciudades : AppCompatActivity() {
+    val TAG ="com.example.myapplicationclima.CIUDAD"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ciudades)
@@ -15,11 +16,13 @@ class Ciudades : AppCompatActivity() {
         val button_cali = findViewById<Button>(R.id.button_cali)
         button_medellin.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(TAG, "ciudad-medellin")
             startActivity(intent)
         })
         button_cali.setOnClickListener(View.OnClickListener {
 
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(TAG, "ciudad-cali")
             startActivity(intent)
         })
     }
