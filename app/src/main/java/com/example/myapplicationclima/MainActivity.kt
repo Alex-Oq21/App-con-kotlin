@@ -9,6 +9,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
     var TvCiudad:TextView?=null
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         }else{
 
         }
+        /*
         val ciudadMede = Ciudad("Medellín", 28,"soleado")
         val ciudadCali = Ciudad("Cali", 32, "nublado")
         if (ciudad == "ciudad-medellin"){
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "No se encuentra la información.", Toast.LENGTH_SHORT).show()
 
         }
-
+*/
     }
     private fun solicitudesHTTP(url: String) {
         val queve = Volley.newRequestQueue(this)
@@ -57,6 +59,12 @@ class MainActivity : AppCompatActivity() {
             StringRequest(Request.Method.GET, url, Response.Listener<String> { response ->
                 try {
                     Log.d("SolicitudHTTPVolley", response)
+                    val gson = Gson()
+                    val ciudad = gson.fromJson(response, Ciudad::class.java)
+                    Log.d("GSON", ciudad.name)
+                    TvCiudad?.text = ciudad.name
+                    TvGrados?.text = ciudad.main?.toString() + "°"
+                    TvEstatus?.text = ciudad.weather?.get(0)?.description
                 } catch (e: Exception) {
 
                 }
