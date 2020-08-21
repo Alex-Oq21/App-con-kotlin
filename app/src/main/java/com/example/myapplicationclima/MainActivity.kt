@@ -2,8 +2,13 @@ package com.example.myapplicationclima
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 
 class MainActivity : AppCompatActivity() {
     var TvCiudad:TextView?=null
@@ -18,6 +23,14 @@ class MainActivity : AppCompatActivity() {
         TvGrados = findViewById(R.id.TvGrados)
         TvEstatus = findViewById(R.id.TvEstatus)
         val ciudad = intent.getStringExtra("com.example.myapplicationclima.CIUDAD")
+        if (Network.hayRed(this)){
+            solicitudesHTTP("api.openweathermap.org/data/2.5/weather?id=3674962&appid=a34b67bfd9f17ed8bad032a7d0ec7fdd")
+            //a34b67bfd9f17ed8bad032a7d0ec7fdd
+            //ID Medellín 3674962
+
+        }else{
+
+        }
         val ciudadMede = Ciudad("Medellín", 28,"soleado")
         val ciudadCali = Ciudad("Cali", 32, "nublado")
         if (ciudad == "ciudad-medellin"){
@@ -37,5 +50,17 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+    private fun solicitudesHTTP(url: String) {
+        val queve = Volley.newRequestQueue(this)
+        val solicitud =
+            StringRequest(Request.Method.GET, url, Response.Listener<String> { response ->
+                try {
+                    Log.d("SolicitudHTTPVolley", response)
+                } catch (e: Exception) {
+
+                }
+            }, Response.ErrorListener { })
+        queve.add(solicitud)
     }
 }
